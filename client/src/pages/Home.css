@@ -1,0 +1,38 @@
+.home {
+  background: var(--bg-soft, #faf9fc);
+  overflow-x: hidden;
+}
+
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+
+.section__eyebrow {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pink, #f472b6);
+  margin-bottom: 0.6rem;
+}
+
+.section__title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--text-dark, #2d2a3d);
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.section__subtitle {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  color: var(--text-muted, #7a7488);
+  max-width: 560px;
+  line-height: 1.6;
+  margin: 0 0 2.5rem;
+}
