@@ -9,3 +9,7 @@ export const createPost = (data) =>
 
 export const likePost = (id) =>
     API.put(`/posts/${id}/like`);
+
+export const reportPost = (id) => {
+  return axios.post(`/api/posts/${id}/report`);
+};

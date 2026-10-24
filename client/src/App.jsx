@@ -10,7 +10,7 @@ import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import AIChat from './pages/AIChat';
 import Dashboard from './pages/Dashboard';
-import Community from './pages/Coomunity';
+import Community from './pages/Community';
 import MoodTracker from './pages/MoodTracker';
 import Profile from './pages/Profile';
 

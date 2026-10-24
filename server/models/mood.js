@@ -20,6 +20,10 @@ const moodSchema = new mongoose.Schema(
       trim: true,
       maxlength: 300,
     },
+    factors: {
+      type: [String],
+      default: [],
+    },
   },
   {
     timestamps: true,

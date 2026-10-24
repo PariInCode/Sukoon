@@ -2,13 +2,16 @@ const Mood = require("../models/Mood");
 
 module.exports.addMood = async (req, res) => {
   try {
-    const { mood, note } = req.body;
+    const { mood, note, factors } = req.body;
+    console.log("factors received:", factors); // add factors
 
     const newMood = await Mood.create({
       user: req.user.id,
       mood,
       note,
+      factors: factors || [], // save it
     });
+    console.log("saved mood:", newMood);
 
     return res.status(201).json({
       success: true,

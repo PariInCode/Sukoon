@@ -8,7 +8,10 @@ const {
   getPosts,
   getMyPosts,
   deletePost,
-} = require("../controllers/postController");
+  reportPost
+} = require("../controllers/postcontroller");
+
+router.post("/:id/report", auth, reportPost);
 
 router.post("/", auth, createPost);
 

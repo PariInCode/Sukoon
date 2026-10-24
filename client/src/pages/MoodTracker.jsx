@@ -29,17 +29,17 @@ export default function MoodTracker() {
   const [submitted, setSubmitted] = useState(false);
   const [pastEntries, setPastEntries] = useState([]);
   useEffect(() => {
-  fetchMoods();
-}, []);
+    fetchMoods();
+  }, []);
 
-const fetchMoods = async () => {
-  try {
-    const res = await getMoods();
-    setPastEntries(res.data.moods);
-  } catch (err) {
-    console.log(err);
-  }
-};
+  const fetchMoods = async () => {
+    try {
+      const res = await getMoods();
+      setPastEntries(res.data.moods);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const toggleFactor = (factor) => {
     setSelectedFactors((prev) =>
@@ -53,6 +53,7 @@ const fetchMoods = async () => {
       await addMood({
         mood: selectedMood,
         note,
+        factors: selectedFactors,
       });
 
       setSubmitted(true);
@@ -69,7 +70,7 @@ const fetchMoods = async () => {
       console.log(err);
       alert("Couldn't save mood.");
     }
-    
+
   };
 
   return (
@@ -94,8 +95,8 @@ const fetchMoods = async () => {
                 key={mood.value}
                 onClick={() => setSelectedMood(mood.value)}
                 className={`flex-1 flex flex-col items-center gap-2 py-4 rounded-2xl border transition ${selectedMood === mood.value
-                    ? "border-transparent bg-gradient-to-br from-[#a78bfa] to-[#f472b6] shadow-[0_10px_24px_-8px_rgba(167,139,250,0.5)] scale-105"
-                    : "border-black/[0.06] bg-[#faf9fc] hover:border-[#a78bfa]/30"
+                  ? "border-transparent bg-gradient-to-br from-[#a78bfa] to-[#f472b6] shadow-[0_10px_24px_-8px_rgba(167,139,250,0.5)] scale-105"
+                  : "border-black/[0.06] bg-[#faf9fc] hover:border-[#a78bfa]/30"
                   }`}
               >
                 <span className="text-3xl">{mood.emoji}</span>
@@ -118,8 +119,8 @@ const fetchMoods = async () => {
                 key={factor}
                 onClick={() => toggleFactor(factor)}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-medium border transition ${selectedFactors.includes(factor)
-                    ? "border-transparent text-white bg-gradient-to-br from-[#a78bfa] to-[#f472b6]"
-                    : "border-black/[0.08] text-[#7a7488] bg-[#faf9fc] hover:border-[#a78bfa]/30"
+                  ? "border-transparent text-white bg-gradient-to-br from-[#a78bfa] to-[#f472b6]"
+                  : "border-black/[0.08] text-[#7a7488] bg-[#faf9fc] hover:border-[#a78bfa]/30"
                   }`}
               >
                 {factor}
@@ -165,6 +166,18 @@ const fetchMoods = async () => {
                     <span className="text-xs text-[#a29cb3]">{new Date(entry.createdAt).toLocaleDateString()}</span>
                   </div>
                   <p className="text-xs text-[#7a7488] leading-relaxed">{entry.note}</p>
+                  {entry.factors?.length > 0 && (
+                    <div className="flex flex-wrap gap-1 mt-1.5">
+                      {entry.factors.map((f) => (
+                        <span
+                          key={f}
+                          className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-[#f3f0ff] text-[#a78bfa]"
+                        >
+                          {f}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
